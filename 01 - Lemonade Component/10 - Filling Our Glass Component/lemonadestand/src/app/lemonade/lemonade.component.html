@@ -1,0 +1,18 @@
+<div class="lemonade">
+  <app-glass
+    [percentLemonJuice]="100 - (products[0].amount / products[0].max) * 100"
+    [percentSugar]="100 - (products[1].amount / products[1].max) * 30"
+    [numberOfIceCubes]="products[2].amount"
+  ></app-glass>
+  <app-card>
+    <app-product
+      *ngFor="let product of products"
+      name="{{ product.name }}"
+      [amount]="product.amount"
+      [max]="product.max"
+      unit="{{ product.unit }}"
+      (incrementProductByName)="increment(product.name)"
+      (decrementProductByName)="decrement(product.name)"
+    ></app-product>
+  </app-card>
+</div>

@@ -1,0 +1,11 @@
+<div class="lemonade">
+  <app-card>
+    <app-product
+      *ngFor="let product of products"
+      name="{{ product.name }}"
+      [amount]="product.amount"
+      [max]="product.max"
+      unit="{{ product.unit }}"
+    ></app-product>
+  </app-card>
+</div>

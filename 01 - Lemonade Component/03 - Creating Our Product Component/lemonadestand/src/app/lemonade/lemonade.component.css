@@ -1,0 +1,29 @@
+.styled-product {
+  width: 90%;
+  display: flex;
+  text-align: center;
+}
+
+.product-name {
+  width: 50%;
+}
+
+.counter {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.increment-button {
+  height: 30px;
+  width: 30px;
+  background: lightgreen;
+  cursor: pointer;
+}
+
+.decrement-button {
+  height: 30px;
+  width: 30px;
+  background: palevioletred;
+}
