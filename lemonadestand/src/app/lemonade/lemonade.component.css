@@ -1,7 +1,17 @@
 .lemonade {
-    margin-top: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.backdrop {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 60vw;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
 }

@@ -9,6 +9,9 @@ import { ConvertMeasurementPipe } from './lemonade/product/convert-measument.pip
 import { GlassComponent } from './lemonade/glass/glass.component';
 import { LiquidComponent } from './lemonade/glass/liquid/liquid.component';
 import { WaveComponent } from './lemonade/glass/liquid/wave/wave.component';
+import { CartComponent } from './cart/cart.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { CartIconComponent } from './lemonade/cart-icon/cart-icon.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { WaveComponent } from './lemonade/glass/liquid/wave/wave.component';
     ConvertMeasurementPipe,
     GlassComponent,
     LiquidComponent,
-    WaveComponent
+    WaveComponent,
+    CartComponent,
+    CartItemComponent,
+    CartIconComponent
   ],
   imports: [
     BrowserModule

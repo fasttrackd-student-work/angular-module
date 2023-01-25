@@ -2,7 +2,7 @@
   width: 200%;
   position: absolute;
   bottom: 100%;
-  margin: -4px;
+  margin: -5px;
   z-index: 1;
 }
 
@@ -25,14 +25,13 @@
 }
 
 .front {
-  fill: #FFC85C;
+  fill: #ffc85c;
   left: 10%;
   animation: wave-animation 4s linear infinite;
 }
 
-
 .back {
-  fill: #FFD974;
+  fill: #ffd974;
   left: 20%;
   animation: wave-animation 2s linear infinite;
 }
@@ -41,7 +40,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #FFC85C;
+  background: #ffc85c;
   height: 100%;
   width: 100%;
   transition: transform 0.8s;
@@ -50,13 +49,13 @@
 
 .fillSugar {
   position: absolute;
-    top: 0;
-    left: 0;
-    background: rgb(255, 255, 255);
-    height: 100%;
-    width: 100%;
-    transition: transform 0.8s;
-    opacity: 70%;
+  top: 0;
+  left: 0;
+  background: rgb(255, 255, 255);
+  height: 100%;
+  width: 100%;
+  transition: transform 0.8s;
+  opacity: 70%;
 }
 
 .iceBox {

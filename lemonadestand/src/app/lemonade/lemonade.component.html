@@ -16,3 +16,6 @@
     ></app-product>
   </app-card>
 </div>
+<app-cart-icon *ngIf="!cartShown" (click)="toggleCart()"></app-cart-icon>
+<app-cart *ngIf="cartShown"></app-cart>
+<div class="backdrop" *ngIf="cartShown" (click)="toggleCart()"></div>
