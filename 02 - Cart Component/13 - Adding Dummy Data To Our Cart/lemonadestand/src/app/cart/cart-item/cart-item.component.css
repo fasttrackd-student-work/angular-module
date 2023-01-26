@@ -1,0 +1,32 @@
+.lemonade {
+  width: 90%;
+  height: 200px;
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.lemonade-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #aacde9;
+  margin: 10px;
+  font-size: 1.2rem;
+  position: relative;
+  width: 60%;
+}
+
+.remove {
+  position: absolute;
+  color: palevioletred;
+  bottom: 0;
+  left: 50%;
+  background: none;
+  border: none;
+}
+
+#total {
+  position: absolute;
+  bottom: 10%;
+}
