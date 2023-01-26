@@ -1,0 +1,73 @@
+.wave {
+  width: 200%;
+  position: absolute;
+  bottom: 100%;
+  margin: -4px;
+  z-index: 1;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: translate(-10%, 0%);
+  }
+  25% {
+    transform: translate(-25%, 0);
+  }
+  50% {
+    transform: translate(-50%, 0);
+  }
+  75% {
+    transform: translate(-25%, 0);
+  }
+  100% {
+    transform: translate(-10%, 0);
+  }
+}
+
+.front {
+  fill: #FFC85C;
+  left: 10%;
+  animation: wave-animation 4s linear infinite;
+}
+
+
+.back {
+  fill: #FFD974;
+  left: 20%;
+  animation: wave-animation 2s linear infinite;
+}
+
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #FFC85C;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.8s;
+  opacity: 80%;
+}
+
+.fillSugar {
+  position: absolute;
+    top: 0;
+    left: 0;
+    background: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+    transition: transform 0.8s;
+    opacity: 70%;
+}
+
+.iceBox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+.iceCube {
+  width: 33%;
+  opacity: 50%;
+}
