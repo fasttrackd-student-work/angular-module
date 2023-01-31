@@ -14,8 +14,9 @@
       (incrementProductByName)="increment(product.name)"
       (decrementProductByName)="decrement(product.name)"
     ></app-product>
+    <button class="add-cart" (click)="addToCart()">Add to Cart</button>
   </app-card>
 </div>
 <app-cart-icon *ngIf="!cartShown" (click)="toggleCart()"></app-cart-icon>
-<app-cart *ngIf="cartShown"></app-cart>
+<app-cart *ngIf="cartShown" [lemonades]="cartLemonades"></app-cart>
 <div class="backdrop" *ngIf="cartShown" (click)="toggleCart()"></div>

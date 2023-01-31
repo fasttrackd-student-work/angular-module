@@ -7,7 +7,9 @@
         [lemonade]="lemonade"
       ></app-cart-item>
     </div>
-    <h2 id="order-total" class="blue">Total Price: $0</h2>
+    <h2 id="order-total" class="blue">
+      Total Price: {{ totalPrice | currency : "USD" }}
+    </h2>
   </div>
   <div class="form-container eighty-percent">
     <select class="input-style one-hundred-percent">

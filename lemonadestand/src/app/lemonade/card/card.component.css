@@ -18,19 +18,3 @@
 .card::-webkit-scrollbar {
   display: none;
 }
-
-.add-cart {
-  width: 77%;
-  height:  50px;
-  border: 1px solid black;
-  background: #F96E46;
-  border-radius: 3px;
-  color: #fff;
-  font-size: 20px;
-  margin: 0 auto;
-
-}
-
-.add-cart:hover {
-  cursor: pointer;
-}

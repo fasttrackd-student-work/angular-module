@@ -8,6 +8,13 @@ interface Product {
   unit: string;
 }
 
+interface Lemonade {
+  lemonJuice: number;
+  sugar: number;
+  iceCubes: number;
+  price: number;
+}
+
 @Component({
   selector: 'app-lemonade',
   templateUrl: './lemonade.component.html',
@@ -38,6 +45,15 @@ export class LemonadeComponent implements OnInit {
     },
   ];
 
+  currentLemonade: Lemonade = {
+    lemonJuice: 0,
+    sugar: 0,
+    iceCubes: 0,
+    price: 0,
+  };
+
+  cartLemonades: Lemonade[] = [];
+
   cartShown: boolean = false;
 
   increment(productName: string) {
@@ -62,6 +78,62 @@ export class LemonadeComponent implements OnInit {
         }
       });
     }
+  }
+
+  addToCart() {
+    this.currentLemonade = {
+      lemonJuice: this.products[0].amount,
+      sugar: this.products[1].amount,
+      iceCubes: this.products[2].amount,
+      price: 0,
+    };
+    this.currentLemonade.price = this.calculatePrice();
+    this.cartLemonades.push(this.currentLemonade);
+    this.resetProducts();
+    this.resetCurrentLemonade();
+  }
+
+  calculatePrice(): number {
+    return (
+      this.currentLemonade.lemonJuice * this.products[0].price +
+      this.currentLemonade.sugar * this.products[1].price +
+      this.currentLemonade.iceCubes * this.products[2].price
+    );
+  }
+
+  resetProducts() {
+    this.products = [
+      {
+        name: 'Lemon Juice',
+        price: 0.5,
+        amount: 0,
+        max: 10,
+        unit: 'oz',
+      },
+      {
+        name: 'Sugar',
+        price: 0.25,
+        amount: 0,
+        max: 8,
+        unit: 'tsp',
+      },
+      {
+        name: 'Ice',
+        price: 0.05,
+        amount: 0,
+        max: 12,
+        unit: 'cubes',
+      },
+    ];
+  }
+
+  resetCurrentLemonade() {
+    this.currentLemonade = {
+      lemonJuice: 0,
+      sugar: 0,
+      iceCubes: 0,
+      price: 0,
+    };
   }
 
   toggleCart() {
