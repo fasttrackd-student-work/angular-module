@@ -5,6 +5,7 @@
       <app-cart-item
         *ngFor="let lemonade of lemonades"
         [lemonade]="lemonade"
+        (newItemEvent)="passLemonadeId($event)"
       ></app-cart-item>
     </div>
     <h2 id="order-total" class="blue">

@@ -11,5 +11,5 @@
     <span>Ice: {{ lemonade.iceCubes }} cubes</span>
     <span id="total">Price: {{ lemonade.price | currency : "USD" }}</span>
   </div>
-  <button class="remove">Remove</button>
+  <button class="remove" (click)="passLemonadeId(lemonade.id)">Remove</button>
 </div>

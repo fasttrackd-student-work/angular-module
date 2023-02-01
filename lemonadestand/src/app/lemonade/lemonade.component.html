@@ -18,5 +18,9 @@
   </app-card>
 </div>
 <app-cart-icon *ngIf="!cartShown" (click)="toggleCart()"></app-cart-icon>
-<app-cart *ngIf="cartShown" [lemonades]="cartLemonades"></app-cart>
+<app-cart
+  *ngIf="cartShown"
+  [lemonades]="cartLemonades"
+  (secondItemEvent)="removeLemonade($event)"
+></app-cart>
 <div class="backdrop" *ngIf="cartShown" (click)="toggleCart()"></div>
