@@ -1,0 +1,15 @@
+<div class="lemonade">
+  <app-glass
+    [percentLemonJuice]="100 - (lemonade.lemonJuice / 10) * 100"
+    [percentSugar]="100 - (lemonade.sugar / 8) * 30"
+    [numberOfIceCubes]="lemonade.iceCubes"
+    [classNames]="'small'"
+  ></app-glass>
+  <div class="lemonade-text">
+    <span>Lemon Juice: {{ lemonade.lemonJuice }} ounces</span>
+    <span>Sugar: {{ lemonade.sugar }} tablespoons</span>
+    <span>Ice: {{ lemonade.iceCubes }} cubes</span>
+    <span id="total">Price: {{ lemonade.price | currency : "USD" }}</span>
+  </div>
+  <button class="remove" (click)="passLemonadeId(lemonade.id)">Remove</button>
+</div>
