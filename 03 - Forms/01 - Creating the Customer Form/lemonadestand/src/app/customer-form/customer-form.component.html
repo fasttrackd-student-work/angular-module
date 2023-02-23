@@ -1,0 +1,20 @@
+<div class="container">
+    <div>
+        <h1>Hi there, before you can customize lemonades for your order we need some
+            information about you</h1>
+        <form class="form-box">
+            <label for="name">Name: (First & Last)</label>
+            <input type="text" name="name" class="input-style" />
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" name="phoneNumber" class="input-style">
+            <label for="lemonadeStand">Which lemonade stand are you wanting to order from today?</label>
+            <select name="lemonadeStand" class="input-style">
+                <option value="undefined">Select a Lemonade Stand</option>
+                <option *ngFor="let lemonadeStand of lemonadeStands" value="lemonadestand">
+                    {{lemonadeStand.name}}
+                </option>
+            </select>
+            <button class="yellow-button">Start Your Order</button>
+        </form>
+    </div>
+</div>

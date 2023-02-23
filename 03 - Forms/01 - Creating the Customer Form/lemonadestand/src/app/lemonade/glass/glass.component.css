@@ -1,0 +1,35 @@
+.glass-div {
+  border-radius: 10px;
+  border: 1px solid #bbb;
+}
+
+.background {
+  height: 502px;
+  width: 315px;
+  background: #fff;
+  margin: 15px;
+}
+
+.glass-back {
+  background: rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #ddd;
+  padding: 3px 5px 15% 5px;
+}
+
+.glass-front {
+  height: 450px;
+  width: 300px;
+  background: rgba(179, 171, 171, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-front.small {
+  height: 165px;
+  width: 100px;
+}
+
+.background.small {
+  height: 175px;
+  width: 115px;
+}
