@@ -1,12 +1,11 @@
-import { outputAst } from '@angular/compiler';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
 
   @Input() name: string = ""
   @Input() amount: number = 0
@@ -25,17 +24,12 @@ export class ProductComponent implements OnInit {
     this.decrementProductByName.emit()
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   increment() {
-    this.amount +=1
+    this.amount += 1
   }
 
   decrement() {
-    this.amount -=1
+    this.amount -= 1
   }
 
 }

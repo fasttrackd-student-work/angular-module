@@ -5,12 +5,10 @@
       <app-cart-item
         *ngFor="let lemonade of lemonades"
         [lemonade]="lemonade"
-        (newItemEvent)="passLemonadeId($event)"
+        (passLemonadeEvent)="receiveLemonadeId($event)"
       ></app-cart-item>
     </div>
-    <h2 id="order-total" class="blue">
-      Total Price: {{ totalPrice | currency : "USD" }}
-    </h2>
+    <h2 class="blue">Total Price: {{ totalPrice | currency : "USD" }}</h2>
   </div>
   <div class="form-container eighty-percent">
     <select class="input-style one-hundred-percent">
@@ -18,7 +16,7 @@
       <option>Stand 1</option>
       <option>Stand 2</option>
     </select>
-    <a routerLink="/order-success">
+    <a>
       <button class="yellow-button font">Place Order</button>
     </a>
   </div>

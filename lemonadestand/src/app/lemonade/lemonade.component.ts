@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core'
 
 interface Product {
-  name: string;
-  amount: number;
-  max: number;
-  price: number;
-  unit: string;
+  name: string
+  amount: number
+  max: number
+  price: number
+  unit: string
 }
 
 interface Lemonade {
-  id: number;
-  lemonJuice: number;
-  sugar: number;
-  iceCubes: number;
-  price: number;
+  id: number
+  lemonJuice: number
+  sugar: number
+  iceCubes: number
+  price: number
 }
 
 @Component({
@@ -21,7 +21,7 @@ interface Lemonade {
   templateUrl: './lemonade.component.html',
   styleUrls: ['./lemonade.component.css'],
 })
-export class LemonadeComponent implements OnInit {
+export class LemonadeComponent {
   products: Product[] = [
     {
       name: 'Lemon Juice',
@@ -46,6 +46,8 @@ export class LemonadeComponent implements OnInit {
     },
   ];
 
+  cartLemonades: Lemonade[] = [];
+
   currentLemonade: Lemonade = {
     id: 0,
     lemonJuice: 0,
@@ -56,32 +58,34 @@ export class LemonadeComponent implements OnInit {
 
   cartIdCount = 0;
 
-  cartLemonades: Lemonade[] = [];
-
-  cartShown: boolean = false;
-
   increment(productName: string) {
-    LemonadeComponent.bind(this);
+    LemonadeComponent.bind(this)
     if (this.products.find((product) => product.name === productName)) {
-      this.products.map((product) => {
+      this.products.forEach((product) => {
         if (product.name === productName) {
-          product.amount < product.max
-            ? (product.amount += 1)
-            : (product.amount = product.amount);
+          product.amount = product.amount < product.max
+            ? (product.amount + 1)
+            : (product.amount)
         }
-      });
+      })
     }
   }
 
   decrement(productName: string) {
-    LemonadeComponent.bind(this);
+    LemonadeComponent.bind(this)
     if (this.products.find((product) => product.name === productName)) {
-      this.products.map((product) => {
+      this.products.forEach((product) => {
         if (product.name === productName) {
-          product.amount > 0 ? (product.amount -= 1) : product.amount;
+          product.amount = product.amount > 0 ? (product.amount - 1) : product.amount
         }
-      });
+      })
     }
+  }
+
+  cartShown: boolean = false;
+
+  toggleCart() {
+    this.cartShown = !this.cartShown
   }
 
   addToCart() {
@@ -96,12 +100,13 @@ export class LemonadeComponent implements OnInit {
         sugar: this.products[1].amount,
         iceCubes: this.products[2].amount,
         price: 0,
-      };
-      this.currentLemonade.price = this.calculatePrice();
-      this.cartLemonades.push(this.currentLemonade);
-      this.cartIdCount++;
+      }
+      this.currentLemonade.price = this.calculatePrice()
+      this.cartLemonades.push(this.currentLemonade)
+      this.cartIdCount++
+      console.log(this.cartLemonades)
+      this.resetProducts()
     }
-    this.resetProducts();
   }
 
   calculatePrice(): number {
@@ -109,7 +114,7 @@ export class LemonadeComponent implements OnInit {
       this.currentLemonade.lemonJuice * this.products[0].price +
       this.currentLemonade.sugar * this.products[1].price +
       this.currentLemonade.iceCubes * this.products[2].price
-    );
+    )
   }
 
   resetProducts() {
@@ -135,23 +140,16 @@ export class LemonadeComponent implements OnInit {
         max: 12,
         unit: 'cubes',
       },
-    ];
+    ]
   }
 
-  toggleCart() {
-    this.cartShown = !this.cartShown;
-  }
-
-  removeLemonade(removedLemonadeId: number) {
-    const itemIndex = this.cartLemonades.findIndex(
-      (cartItem) => cartItem.id === removedLemonadeId
-    );
-    if (itemIndex >= 0) {
-      this.cartLemonades.splice(itemIndex, 1);
+  removeFromCart(removedLemonadeId: number) {
+    const itemIdex = this.cartLemonades.findIndex(
+      (lemonade) => lemonade.id === removedLemonadeId
+    )
+    if (itemIdex > -1) {
+      this.cartLemonades.splice(itemIdex, 1)
     }
   }
 
-  constructor() {}
-
-  ngOnInit(): void {}
 }

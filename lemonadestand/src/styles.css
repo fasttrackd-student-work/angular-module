@@ -34,3 +34,21 @@ body {
 .blue {
   color: #aacde9;
 }
+
+.error {
+  color: palevioletred;
+  font-size: 1.5em;
+  width: 100% !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.green {
+  color: palegreen;
+}
+
+.yellow {
+  color: #fff1aa;
+}

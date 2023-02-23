@@ -25,13 +25,14 @@
 }
 
 .front {
-  fill: #ffc85c;
+  fill: #FFC85C;
   left: 10%;
   animation: wave-animation 4s linear infinite;
 }
 
+
 .back {
-  fill: #ffd974;
+  fill: #FFD974;
   left: 20%;
   animation: wave-animation 2s linear infinite;
 }
@@ -40,7 +41,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: #ffc85c;
+  background: #FFC85C;
   height: 100%;
   width: 100%;
   transition: transform 0.8s;
@@ -49,13 +50,13 @@
 
 .fillSugar {
   position: absolute;
-  top: 0;
-  left: 0;
-  background: rgb(255, 255, 255);
-  height: 100%;
-  width: 100%;
-  transition: transform 0.8s;
-  opacity: 70%;
+    top: 0;
+    left: 0;
+    background: rgb(255, 255, 255);
+    height: 100%;
+    width: 100%;
+    transition: transform 0.8s;
+    opacity: 70%;
 }
 
 .iceBox {

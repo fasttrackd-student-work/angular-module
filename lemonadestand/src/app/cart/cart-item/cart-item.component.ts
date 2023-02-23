@@ -1,20 +1,16 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-cart-item',
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css'],
 })
-export class CartItemComponent implements OnInit {
-  @Input() lemonade: any;
+export class CartItemComponent {
+  @Input() lemonade: any
 
-  @Output() newItemEvent = new EventEmitter<number>();
+  @Output() passLemonadeEvent = new EventEmitter<number>();
 
   passLemonadeId(removedLemonadeId: number) {
-    this.newItemEvent.emit(removedLemonadeId);
+    this.passLemonadeEvent.emit(removedLemonadeId)
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

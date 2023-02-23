@@ -17,10 +17,10 @@
     <button class="add-cart" (click)="addToCart()">Add to Cart</button>
   </app-card>
 </div>
-<app-cart-icon *ngIf="!cartShown" (click)="toggleCart()"></app-cart-icon>
 <app-cart
   *ngIf="cartShown"
   [lemonades]="cartLemonades"
-  (secondItemEvent)="removeLemonade($event)"
+  (secondPassLemonadeIdEvent)="removeFromCart($event)"
 ></app-cart>
+<app-cart-icon *ngIf="!cartShown" (click)="toggleCart()"></app-cart-icon>
 <div class="backdrop" *ngIf="cartShown" (click)="toggleCart()"></div>
