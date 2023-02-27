@@ -16,8 +16,10 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartIconComponent } from './lemonade/cart-icon/cart-icon.component';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
 import { InputComponent } from './customer-form/input/input.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'lemonade', component: LemonadeComponent },
   { path: '', component: CustomerFormComponent },
 ];
@@ -37,6 +39,7 @@ const routes: Routes = [
     CartIconComponent,
     CustomerFormComponent,
     InputComponent,
+    CheckoutComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, RouterModule.forRoot(routes)],
   providers: [],
