@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
 
 interface Lemonade {
   id: number;
@@ -21,7 +22,9 @@ interface LemonadeStand {
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cartData: CartService) {}
+
+  stand: LemonadeStand = { id: -1, name: '' };
 
   @Input() lemonades: Lemonade[] = [];
 
@@ -29,24 +32,30 @@ export class CartComponent implements OnInit {
 
   totalPrice: number = 0;
 
+  lemonadePrices: number = 0;
+
   receiveLemonadeId(removedLemonadeId: number) {
     this.secondPassLemonadeIdEvent.emit(removedLemonadeId);
   }
 
   ngOnInit(): void {
-    this.lemonades.forEach(
-      (lemonade) => (this.totalPrice = this.totalPrice + lemonade.price)
+    this.cartData.currentStand.subscribe((stand) => (this.stand = stand));
+    this.cartData.standOptions.subscribe(
+      (standOptions) => (this.lemonadeStands = standOptions)
     );
-    this.customerForm.setValue({ selectedStand: this.lemonadeStands[2] });
+    this.cartData.totalPrice.subscribe(
+      (totalPrice) => (this.totalPrice = totalPrice)
+    );
+    this.lemonades.forEach(
+      (lemonade) => (this.lemonadePrices = this.lemonadePrices + lemonade.price)
+    );
+    this.cartData.updateTotalPrice(this.lemonadePrices);
+    this.customerForm.setValue({
+      selectedStand: this.stand,
+    });
   }
 
-  lemonadeStands: LemonadeStand[] = [
-    { id: 1, name: 'Cooksys Lemonade Stand 1' },
-    { id: 2, name: 'Cooksys Lemonade Stand 2' },
-    { id: 3, name: 'Cooksys Lemonade Stand 3' },
-    { id: 4, name: 'Cooksys Lemonade Stand 4' },
-    { id: 5, name: 'Cooksys Lemonade Stand 5' },
-  ];
+  lemonadeStands: LemonadeStand[] = [];
 
   customerForm: FormGroup = new FormGroup({
     selectedStand: new FormControl<LemonadeStand | undefined>(undefined, [
@@ -60,6 +69,11 @@ export class CartComponent implements OnInit {
         this.customerForm.controls['selectedStand'].value
       )}`
     );
+
+    this.cartData.changeSelectedStand(
+      this.customerForm.controls['selectedStand'].value
+    );
+
     this.router.navigateByUrl('/checkout');
   }
 }
