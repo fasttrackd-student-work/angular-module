@@ -18,7 +18,7 @@
                 <div *ngIf="customerForm.controls['selectedStand'].errors['required']" class="error">Lemonade stand is
                     required</div>
             </ng-container>
-            <button class="yellow-button" [disabled]="customerForm.invalid"
+            <button routerLink="/lemonade" class="yellow-button" [disabled]="customerForm.invalid"
                 [ngClass]="customerForm.invalid ? 'disabled' : ''">Start Your Order</button>
         </form>
     </div>
