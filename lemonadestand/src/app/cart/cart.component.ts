@@ -63,15 +63,17 @@ export class CartComponent implements OnInit {
     ]),
   });
 
+  updateSelectedStand() {
+    this.cartData.changeSelectedStand(
+      this.customerForm.controls['selectedStand'].value
+    );
+  }
+
   onSubmit() {
     console.log(
       `Selected Lemonade Stand: ${JSON.stringify(
         this.customerForm.controls['selectedStand'].value
       )}`
-    );
-
-    this.cartData.changeSelectedStand(
-      this.customerForm.controls['selectedStand'].value
     );
 
     this.router.navigateByUrl('/checkout');
