@@ -17,19 +17,17 @@ export class CartService {
   currentStand = this.standSource.asObservable();
 
   private standOptionsSource = new BehaviorSubject<LemonadeStand[]>([]);
-  standOptions = this.standOptionsSource.asObservable();
+  currentStandOptions = this.standOptionsSource.asObservable();
 
   private totalPriceSource = new BehaviorSubject<number>(0);
-  totalPrice = this.totalPriceSource.asObservable();
+  currentTotalPrice = this.totalPriceSource.asObservable();
 
-  constructor() {}
-
-  changeSelectedStand(lemonadeStand: LemonadeStand) {
-    this.standSource.next(lemonadeStand);
+  updateSelectedStand(stand: LemonadeStand) {
+    this.standSource.next(stand);
   }
 
-  updateStandOptions(lemonadeStands: LemonadeStand[]) {
-    this.standOptionsSource.next(Object.assign([], lemonadeStands));
+  updateStandOptions(stands: LemonadeStand[]) {
+    this.standOptionsSource.next(stands);
   }
 
   updateTotalPrice(totalPrice: number) {

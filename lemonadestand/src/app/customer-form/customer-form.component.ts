@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PhoneFormControl } from './phone-form-control';
-import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 interface LemonadeStand {
   id: number;
@@ -15,8 +15,7 @@ interface LemonadeStand {
   styleUrls: ['./customer-form.component.css'],
 })
 export class CustomerFormComponent {
-  constructor(private router: Router, private cartData: CartService) {}
-
+  constructor(private cartData: CartService, private router: Router) {}
   lemonadeStands: LemonadeStand[] = [
     { id: 1, name: 'Cooksys Lemonade Stand 1' },
     { id: 2, name: 'Cooksys Lemonade Stand 2' },
@@ -24,16 +23,6 @@ export class CustomerFormComponent {
     { id: 4, name: 'Cooksys Lemonade Stand 4' },
     { id: 5, name: 'Cooksys Lemonade Stand 5' },
   ];
-
-  stand: LemonadeStand = { id: -1, name: '' };
-  standOptions: LemonadeStand[] = [];
-
-  ngOnInit() {
-    this.cartData.currentStand.subscribe((stand) => (this.stand = stand));
-    this.cartData.standOptions.subscribe(
-      (standOptions) => (this.standOptions = standOptions)
-    );
-  }
 
   customerForm: FormGroup = new FormGroup({
     name: new FormControl<string>('', [
@@ -61,15 +50,14 @@ export class CustomerFormComponent {
       )}`
     );
 
-    this.cartData.updateStandOptions(this.lemonadeStands);
-
-    this.cartData.changeSelectedStand(
+    this.cartData.updateSelectedStand(
       this.customerForm.controls['selectedStand'].value
     );
 
-    console.log('CURR OPTS', this.cartData.standOptions);
+    this.cartData.updateStandOptions(this.lemonadeStands);
 
-    console.log('CURR STAND', this.cartData.currentStand);
+    console.log(this.cartData.currentStand);
+    console.log(this.cartData.currentStandOptions);
 
     this.router.navigateByUrl('/lemonade');
   }

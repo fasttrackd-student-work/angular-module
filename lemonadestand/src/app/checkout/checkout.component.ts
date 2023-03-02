@@ -10,9 +10,9 @@ export class CheckoutComponent {
   constructor(private cartData: CartService) {}
   totalPrice: number = 0;
 
-  ngOnInit(): void {
-    this.cartData.totalPrice.subscribe(
-      (totalPrice) => (this.totalPrice = totalPrice)
+  ngOnInit() {
+    this.cartData.currentTotalPrice.subscribe(
+      (currentTotalPrice) => (this.totalPrice = currentTotalPrice)
     );
   }
 }

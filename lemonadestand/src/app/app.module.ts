@@ -19,9 +19,9 @@ import { InputComponent } from './customer-form/input/input.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'lemonade', component: LemonadeComponent },
   { path: '', component: CustomerFormComponent },
+  { path: 'lemonade', component: LemonadeComponent },
+  { path: 'checkout', component: CheckoutComponent },
 ];
 
 @NgModule({

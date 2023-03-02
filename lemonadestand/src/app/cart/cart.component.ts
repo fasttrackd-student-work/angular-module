@@ -22,39 +22,7 @@ interface LemonadeStand {
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  constructor(private router: Router, private cartData: CartService) {}
-
-  stand: LemonadeStand = { id: -1, name: '' };
-
-  @Input() lemonades: Lemonade[] = [];
-
-  @Output() secondPassLemonadeIdEvent = new EventEmitter<number>();
-
-  totalPrice: number = 0;
-
-  lemonadePrices: number = 0;
-
-  receiveLemonadeId(removedLemonadeId: number) {
-    this.secondPassLemonadeIdEvent.emit(removedLemonadeId);
-  }
-
-  ngOnInit(): void {
-    this.cartData.currentStand.subscribe((stand) => (this.stand = stand));
-    this.cartData.standOptions.subscribe(
-      (standOptions) => (this.lemonadeStands = standOptions)
-    );
-    this.cartData.totalPrice.subscribe(
-      (totalPrice) => (this.totalPrice = totalPrice)
-    );
-    this.lemonades.forEach(
-      (lemonade) => (this.lemonadePrices = this.lemonadePrices + lemonade.price)
-    );
-    this.cartData.updateTotalPrice(this.lemonadePrices);
-    this.customerForm.setValue({
-      selectedStand: this.stand,
-    });
-  }
-
+  constructor(private cartData: CartService, private router: Router) {}
   lemonadeStands: LemonadeStand[] = [];
 
   customerForm: FormGroup = new FormGroup({
@@ -63,12 +31,6 @@ export class CartComponent implements OnInit {
     ]),
   });
 
-  updateSelectedStand() {
-    this.cartData.changeSelectedStand(
-      this.customerForm.controls['selectedStand'].value
-    );
-  }
-
   onSubmit() {
     console.log(
       `Selected Lemonade Stand: ${JSON.stringify(
@@ -76,6 +38,43 @@ export class CartComponent implements OnInit {
       )}`
     );
 
+    this.cartData.updateSelectedStand(
+      this.customerForm.controls['selectedStand'].value
+    );
+
+    console.log(this.cartData.currentStand);
+
+    console.log(this.cartData.currentTotalPrice);
+
     this.router.navigateByUrl('/checkout');
+  }
+
+  @Input() lemonades: Lemonade[] = [];
+
+  @Output() secondPassLemonadeIdEvent = new EventEmitter<number>();
+
+  totalPrice: number = 0;
+
+  receiveLemonadeId(removedLemonadeId: number) {
+    this.secondPassLemonadeIdEvent.emit(removedLemonadeId);
+  }
+
+  ngOnInit(): void {
+    this.cartData.currentStandOptions.subscribe(
+      (currentStandOption) => (this.lemonadeStands = currentStandOption)
+    );
+    this.cartData.currentStand.subscribe((currentStand) =>
+      this.customerForm.setValue({ selectedStand: currentStand })
+    );
+    this.lemonades.forEach((lemonade) => {
+      this.totalPrice = this.totalPrice + lemonade.price;
+      this.cartData.updateTotalPrice(this.totalPrice);
+    });
+  }
+
+  updateSelectedStand() {
+    this.cartData.updateSelectedStand(
+      this.customerForm.controls['selectedStand'].value
+    );
   }
 }
