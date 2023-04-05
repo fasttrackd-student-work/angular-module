@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <h1 class="blue">Your Order</h1>
+  <div class="order-container eighty-percent">
+    <div class="order-box">
+      <app-cart-item
+        *ngFor="let lemonade of lemonades"
+        [lemonade]="lemonade"
+        (passLemonadeEvent)="receiveLemonadeId($event)"
+      ></app-cart-item>
+    </div>
+    <h2 class="blue">Total Price: {{ totalPrice | currency : "USD" }}</h2>
+  </div>
+  <form
+    class="form-container eighty-percent"
+    [formGroup]="customerForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <select
+      name="lemonadeStand"
+      class="input-style one-hundred-percent"
+      formControlName="selectedStand"
+      (change)="updateSelectedStand()"
+    >
+      <option
+        *ngFor="let lemonadeStand of lemonadeStands"
+        [ngValue]="lemonadeStand"
+      >
+        {{ lemonadeStand.name }}
+      </option>
+    </select>
+    <button class="yellow-button font">Place Order</button>
+  </form>
+</div>
