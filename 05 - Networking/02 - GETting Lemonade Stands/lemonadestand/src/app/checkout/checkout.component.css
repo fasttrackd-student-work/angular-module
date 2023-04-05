@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100vw;
+}
+
+.width {
+  width: 70%;
+}
+
+.success {
+  font-size: 3em;
+}
+
+.total {
+  font-size: 4em;
+}
+
+.center-text {
+  text-align: center;
+}

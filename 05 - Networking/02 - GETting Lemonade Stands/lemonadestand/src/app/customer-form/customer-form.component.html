@@ -1,0 +1,26 @@
+<div class="container" *ngIf="lemonadeStands.length === 0 else elseBlock">Loading...</div>
+<ng-template #elseBlock>
+    <div class="container">
+        <h1>Hi there, before you can customize lemonades for your order we need some
+            information about you</h1>
+        <form class="form-box" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <app-input [control]="$any(customerForm.get('name'))" label="Name" />
+            <app-input [control]="$any(customerForm.get('phoneNumber'))" label="Phone Number" />
+
+            <label for="lemonadeStand">Which lemonade stand are you wanting to order from today?</label>
+            <select name="lemonadeStand" class="input-style" formControlName="selectedStand">
+                <option [ngValue]="null" disabled>Select a Lemonade Stand</option>
+                <option *ngFor="let lemonadeStand of lemonadeStands" [ngValue]="lemonadeStand">
+                    {{lemonadeStand.name}}
+                </option>
+            </select>
+            <ng-container
+                *ngIf="customerForm.controls['selectedStand'].touched && customerForm.controls['selectedStand'].errors">
+                <div *ngIf="customerForm.controls['selectedStand'].errors['required']" class="error">Lemonade stand is
+                    required</div>
+            </ng-container>
+            <button class="yellow-button" [disabled]="customerForm.invalid"
+                [ngClass]="customerForm.invalid ? 'disabled' : ''">Start Your Order</button>
+        </form>
+    </div>
+</ng-template>
