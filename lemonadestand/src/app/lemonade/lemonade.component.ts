@@ -1,4 +1,8 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import LemonadeStand from '../models/LemonadeStand'
+import { CartService } from '../cart.service'
+import { Router } from '@angular/router'
+import Lemonade from '../models/Lemonade'
 
 interface Product {
   name: string
@@ -8,20 +12,12 @@ interface Product {
   unit: string
 }
 
-interface Lemonade {
-  id: number
-  lemonJuice: number
-  sugar: number
-  iceCubes: number
-  price: number
-}
-
 @Component({
   selector: 'app-lemonade',
   templateUrl: './lemonade.component.html',
   styleUrls: ['./lemonade.component.css'],
 })
-export class LemonadeComponent {
+export class LemonadeComponent implements OnInit {
   products: Product[] = [
     {
       name: 'Lemon Juice',
@@ -57,6 +53,22 @@ export class LemonadeComponent {
   };
 
   cartIdCount = 0;
+
+  customerName: string = ''
+  customerPhoneNumber: string = ''
+  selectedStand: LemonadeStand | undefined = undefined
+
+  constructor(private cartData: CartService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.cartData.customerName.subscribe(customerName => this.customerName = customerName)
+    this.cartData.customerPhoneNumber.subscribe(customerPhoneNumber => this.customerPhoneNumber = customerPhoneNumber)
+    this.cartData.selectedStand.subscribe(selectedStand => this.selectedStand = selectedStand)
+
+    if (!this.customerName || !this.customerPhoneNumber || !this.selectedStand) {
+      this.router.navigateByUrl('/')
+    }
+  }
 
   increment(productName: string) {
     LemonadeComponent.bind(this)

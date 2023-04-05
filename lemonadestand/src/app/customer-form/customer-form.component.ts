@@ -1,28 +1,18 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PhoneFormControl } from './phone-form-control';
-import { CartService } from '../cart.service';
-import { Router } from '@angular/router';
-
-interface LemonadeStand {
-  id: number;
-  name: string;
-}
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { PhoneFormControl } from './phone-form-control'
+import { CartService } from '../cart.service'
+import { Router } from '@angular/router'
+import LemonadeStand from '../models/LemonadeStand'
 
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
   styleUrls: ['./customer-form.component.css'],
 })
-export class CustomerFormComponent {
-  constructor(private cartData: CartService, private router: Router) {}
-  lemonadeStands: LemonadeStand[] = [
-    { id: 1, name: 'Cooksys Lemonade Stand 1' },
-    { id: 2, name: 'Cooksys Lemonade Stand 2' },
-    { id: 3, name: 'Cooksys Lemonade Stand 3' },
-    { id: 4, name: 'Cooksys Lemonade Stand 4' },
-    { id: 5, name: 'Cooksys Lemonade Stand 5' },
-  ];
+export class CustomerFormComponent implements OnInit {
+
+  lemonadeStands: LemonadeStand[] = [];
 
   customerForm: FormGroup = new FormGroup({
     name: new FormControl<string>('', [
@@ -39,26 +29,28 @@ export class CustomerFormComponent {
     ]),
   });
 
-  onSubmit() {
-    console.log(`Name: ${this.customerForm.controls['name'].value}`);
-    console.log(
-      `Phone Number: ${this.customerForm.controls['phoneNumber'].value}`
-    );
-    console.log(
-      `Selected Lemonade Stand: ${JSON.stringify(
-        this.customerForm.controls['selectedStand'].value
-      )}`
-    );
+  constructor(private cartData: CartService, private router: Router) { }
 
+  ngOnInit(): void {
+    this.cartData.loadLemonadeStands().subscribe((response) => {
+      this.cartData.updateStandOptions(response)
+    })
+    this.cartData.currentStandOptions.subscribe(currentStandOptions => this.lemonadeStands = currentStandOptions)
+  }
+
+  onSubmit() {
     this.cartData.updateSelectedStand(
       this.customerForm.controls['selectedStand'].value
-    );
+    )
+    this.cartData.updateCustomerName(
+      this.customerForm.controls['name'].value
+    )
+    this.cartData.updateCustomerPhoneNumber(
+      this.customerForm.controls['phoneNumber'].value
+    )
 
-    this.cartData.updateStandOptions(this.lemonadeStands);
+    this.cartData.updateStandOptions(this.lemonadeStands)
 
-    console.log(this.cartData.currentStand);
-    console.log(this.cartData.currentStandOptions);
-
-    this.router.navigateByUrl('/lemonade');
+    this.router.navigateByUrl('/lemonade')
   }
 }

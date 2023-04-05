@@ -1,5 +1,6 @@
-<div class="container">
-    <div>
+<div class="container" *ngIf="lemonadeStands.length === 0 else elseBlock">Loading...</div>
+<ng-template #elseBlock>
+    <div class="container">
         <h1>Hi there, before you can customize lemonades for your order we need some
             information about you</h1>
         <form class="form-box" [formGroup]="customerForm" (ngSubmit)="onSubmit()">
@@ -8,7 +9,7 @@
 
             <label for="lemonadeStand">Which lemonade stand are you wanting to order from today?</label>
             <select name="lemonadeStand" class="input-style" formControlName="selectedStand">
-                <option [ngValue]="undefined">Select a Lemonade Stand</option>
+                <option [ngValue]="null" disabled>Select a Lemonade Stand</option>
                 <option *ngFor="let lemonadeStand of lemonadeStands" [ngValue]="lemonadeStand">
                     {{lemonadeStand.name}}
                 </option>
@@ -22,4 +23,4 @@
                 [ngClass]="customerForm.invalid ? 'disabled' : ''">Start Your Order</button>
         </form>
     </div>
-</div>
+</ng-template>

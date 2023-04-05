@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core"
 
 @Pipe({
   name: 'convertMeasument'
@@ -10,9 +10,9 @@ export class ConvertMeasurementPipe implements PipeTransform {
       case 'oz':
         return value + ' oz'
       case 'tsp':
-        if (value === 3 || value === 6) {
-          return value / 3 + ' tbsp'
-        }
+        // if (value === 3 || value === 6) {
+        //   return value / 3 + ' tbsp'
+        // }
         return value + ' tsp'
       case 'cubes':
         return value + ' cubes'
